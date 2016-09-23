@@ -1,53 +1,26 @@
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 	<head>
-		<meta charset='utf-8'>
-		<meta http-equiv="X-UA-Compatible" content="chrome=1">
-		<meta name="description" content="wqf582.github.io : 大魔包的主页">
-
-		<link rel="shortcut icon" type="image/x-icon" href="wqf582.ico" media="screen" />
-
+		<title>birds</title>
+		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
 			body {
-				transparent: true;
+				background-color: #ffffff;
 				margin: 0px;
 				overflow: hidden;
+				font-family:Monospace;
+				text-align:center;
+				text-align:center;
 				cursor: pointer;
 			}
-			#main {
-				background-color: rgba(0, 0, 0, 0.4);
-				position: absolute;
-				width: 100%;
-			}
 		</style>
-		
-		<title>wqf582.github.io</title>
 	</head>
-
 	<body>
 
-		<!-- HEADER
-		<div id="header_wrap" class="outer">
-			<header class="inner">
-
-				 <h1 id="project_title">wqf582.github.io</h1>
-				 <h2 id="project_tagline">I will share you some games</h2>
-
-			</header>
-		</div> -->
-
-		<!-- MAIN CONTENT
-		<a href="https://wqf582.github.io/rapidmath/">RapidMath</a>
-		<a href="https://wqf582.github.io/flappybird/">FlappyBird</a> -->
-		<div id="main">
-			<p><a href="https://wqf582.github.io/rapidmath/">RapidMath</a></p>
-			<p><a href="https://wqf582.github.io/flappybird/">FlappyBird</a></p>
-		</div>
-		
-		<script src="gpu_birds/js/three.js"></script>
-		<script src="gpu_birds/js/GPUComputationRenderer.js"></script>
+		<script src="js/three.js"></script>
+		<script src="js/GPUComputationRenderer.js"></script>
 
 		<!-- shader for bird's position -->
 		<script id="fragmentShaderPosition" type="x-shader/x-fragment">
@@ -424,7 +397,7 @@
 				document.body.appendChild( container );
 
 				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 3000 );
-				camera.position.z = 300;
+				camera.position.z = 350;
 
 				scene = new THREE.Scene();
 
@@ -577,6 +550,7 @@
 
 			}
 
+
 			function onWindowResize() {
 
 				windowHalfX = window.innerWidth / 2;
@@ -622,6 +596,8 @@
 
 			}
 
+			//
+
 			function animate() {
 
 				requestAnimationFrame( animate );
@@ -660,6 +636,5 @@
 			}
 
 		</script>
-	
 	</body>
 </html>
