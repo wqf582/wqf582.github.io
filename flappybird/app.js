@@ -1,5 +1,5 @@
 window.onload = function () {
-    FlappyBird.Instance = new FlappyBird();
-    FlappyBird.Instance.init();
+    MyFlappyBird.Instance = new MyFlappyBird();
+    MyFlappyBird.Instance.init();
 };
 //# sourceMappingURL=app.js.map
