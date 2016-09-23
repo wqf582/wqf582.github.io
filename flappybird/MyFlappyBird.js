@@ -323,7 +323,7 @@ var MyFlappyBird = (function () {
             tex.position.z = 5;
             this.scene.add(tex);
             this.number.push(tex);
-            s = Math.round(s / 10);
+            s = Math.floor(s / 10);
         }
     };
     MyFlappyBird.prototype.onWindowResized = function (event) {
