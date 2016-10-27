@@ -45,48 +45,40 @@ var Game = (function () {
         var _this = this;
         this.stageLevel = new PIXI.Container();
         {
-            var text = new PIXI.Text('5 × 5');
+            var text = PIXI.Sprite.fromImage('res/5_5.png');
             text.name = '5_5';
             text.anchor.set(0.5, 0.5);
-            text.position.set(window.innerWidth / 2, 200);
-            text.style.font = 'lighter 100px 微软雅黑';
-            text.style.fill = '#dddddd';
+            text.position.set(window.innerWidth / 2, 80);
             text.interactive = true;
             text.on('click', function (event) { _this.chooseLevel(event); });
             text.on('tap', function (event) { _this.chooseLevel(event); });
             this.stageLevel.addChild(text);
         }
         {
-            var text = new PIXI.Text('6 × 6');
+            var text = PIXI.Sprite.fromImage('res/6_6.png');
             text.name = '6_6';
             text.anchor.set(0.5, 0.5);
-            text.position.set(window.innerWidth / 2, 350);
-            text.style.font = 'lighter 100px 微软雅黑';
-            text.style.fill = '#dddddd';
+            text.position.set(window.innerWidth / 2, 240);
             text.interactive = true;
             text.on('click', function (event) { _this.chooseLevel(event); });
             text.on('tap', function (event) { _this.chooseLevel(event); });
             this.stageLevel.addChild(text);
         }
         {
-            var text = new PIXI.Text('7 × 7');
+            var text = PIXI.Sprite.fromImage('res/7_7.png');
             text.name = '7_7';
             text.anchor.set(0.5, 0.5);
-            text.position.set(window.innerWidth / 2, 500);
-            text.style.font = 'lighter 100px 微软雅黑';
-            text.style.fill = '#dddddd';
+            text.position.set(window.innerWidth / 2, 400);
             text.interactive = true;
             text.on('click', function (event) { _this.chooseLevel(event); });
             text.on('tap', function (event) { _this.chooseLevel(event); });
             this.stageLevel.addChild(text);
         }
         {
-            var text = new PIXI.Text('7 × 10');
+            var text = PIXI.Sprite.fromImage('res/7_10.png');
             text.name = '7_10';
             text.anchor.set(0.5, 0.5);
-            text.position.set(window.innerWidth / 2, 650);
-            text.style.font = 'lighter 100px 微软雅黑';
-            text.style.fill = '#dddddd';
+            text.position.set(window.innerWidth / 2, 560);
             text.interactive = true;
             text.on('click', function (event) { _this.chooseLevel(event); });
             text.on('tap', function (event) { _this.chooseLevel(event); });
@@ -105,11 +97,9 @@ var Game = (function () {
         this.initLevel();
         this.stageGame = new PIXI.Container();
         {
-            this.buttonBack = new PIXI.Text(' < ');
+            this.buttonBack = PIXI.Sprite.fromImage('res/back.png');
             this.buttonBack.name = 'back';
-            this.buttonBack.position.set(0, 10);
-            this.buttonBack.style.font = 'lighter 100px 宋体';
-            this.buttonBack.style.fill = '#dddddd';
+            this.buttonBack.position.set(0, 0);
             this.buttonBack.interactive = true;
             this.buttonBack.on('click', function (event) { _this.backToStageLevel(event); });
             this.buttonBack.on('tap', function (event) { _this.backToStageLevel(event); });
@@ -119,21 +109,21 @@ var Game = (function () {
             this.starText = new PIXI.Text('');
             this.starText.name = 'stars';
             this.starText.anchor.set(0.5, 0.5);
-            this.starText.position.set(window.innerWidth / 2, 60);
-            this.starText.style.font = 'lighter 64px Arial';
-            this.starText.style.fill = '#dddddd';
+            this.starText.position.set(window.innerWidth / 2, 50);
+            this.starText.style.font = 'lighter 40px Arial';
+            this.starText.style.fill = '#ffffff';
             this.stageGame.addChild(this.starText);
         }
         {
             this.stepText = new PIXI.Text('');
             this.stepText.name = 'steps';
             this.stepText.anchor.set(1, 0.5);
-            this.stepText.position.set(window.innerWidth - 50, 60);
-            this.stepText.style.font = 'lighter 48px 微软雅黑';
-            this.stepText.style.fill = '#dddddd';
+            this.stepText.position.set(window.innerWidth - 50, 50);
+            this.stepText.style.font = 'lighter 36px 微软雅黑';
+            this.stepText.style.fill = '#ffffff';
             this.stageGame.addChild(this.stepText);
         }
-        var scale = Math.min(1, window.innerWidth / (128 * this.mapWidth), (window.innerHeight - 150) / (128 * this.mapHeight));
+        var scale = Math.min(1, window.innerWidth / (128 * this.mapWidth), (window.innerHeight - 120) / (128 * this.mapHeight));
         var size = Math.floor(128 * scale);
         size += size % 2;
         for (var i = 1; i <= this.mapHeight; i++) {
@@ -144,7 +134,7 @@ var Game = (function () {
                 tempBlock.anchor.set(0.5, 0.5);
                 tempBlock.scale.set(scale, scale);
                 tempBlock.rotation = Math.PI * 0.5 * Math.floor(Math.random() * 4);
-                tempBlock.position.set(window.innerWidth / 2 + (j - (this.mapWidth / 2 + 0.5)) * size, 120 + (i - 0.5) * size);
+                tempBlock.position.set(window.innerWidth / 2 + (j - (this.mapWidth / 2 + 0.5)) * size, 100 + (i - 0.5) * size);
                 tempBlock.interactive = true;
                 tempBlock.on('click', function (event) { _this.blockClicked(event); });
                 tempBlock.on('tap', function (event) { _this.blockClicked(event); });
@@ -211,16 +201,16 @@ var Game = (function () {
             this.steps++;
             if (this.checkAnswer()) {
                 this.completed = true;
-                if (this.steps <= this.minStep + 4) {
+                if (this.steps <= this.minStep + 6) {
                     this.starText.text = '★★★★★';
                 }
-                else if (this.steps <= this.minStep + 8) {
+                else if (this.steps <= this.minStep + 12) {
                     this.starText.text = '★★★★☆';
                 }
-                else if (this.steps <= this.minStep + 12) {
+                else if (this.steps <= this.minStep + 18) {
                     this.starText.text = '★★★☆☆';
                 }
-                else if (this.steps <= this.minStep + 16) {
+                else if (this.steps <= this.minStep + 24) {
                     this.starText.text = '★★☆☆☆';
                 }
                 else {
@@ -379,18 +369,13 @@ var Game = (function () {
                 var img = this.answer[block].split('_')[0];
                 var rot = parseInt(this.answer[block].split('_')[1]);
                 var newRot = 0;
-                var rand = Math.floor(Math.random() * 4);
+                var rand = Math.floor(Math.random() * 4) + 1;
                 if (img == '2') {
                     this.minStep += rand % 2;
                     newRot = (rot + rand) % 2;
                 }
                 else {
-                    if (rand == 3) {
-                        this.minStep++;
-                    }
-                    else {
-                        this.minStep += rand;
-                    }
+                    this.minStep += (4 - rand);
                     newRot = (rot + rand) % 4;
                 }
                 this.blockMap[block].rotation = Math.PI * 0.5 * newRot;
