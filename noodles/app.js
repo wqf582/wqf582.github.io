@@ -1,5 +1,6 @@
 var Game = (function () {
     function Game() {
+        this.textureList1 = {};
         this.rectTexture = [];
         this.polyTexture = [];
         this.blockMap = {};
@@ -28,6 +29,12 @@ var Game = (function () {
         this.rectTexture[7] = '3_1';
         this.rectTexture[11] = '3_2';
         this.rectTexture[13] = '3_3';
+        for (var i = 0; i < 4; i++) {
+            this.textureList1['s' + i] = PIXI.Texture.fromImage('res/s' + i + '.png');
+        }
+        for (var i = 0; i < 4; i++) {
+            this.textureList1['n' + i] = PIXI.Texture.fromImage('res/n' + i + '.png');
+        }
         this.showLevel();
         document.addEventListener('mousedown', function (event) { _this.onMouseDown(event); }, false);
         document.addEventListener('touchstart', function (event) { _this.onTouchStart(event); }, false);
@@ -348,10 +355,10 @@ var Game = (function () {
                         var img = this.rectTexture[num].split('_')[0];
                         var rot = parseInt(this.rectTexture[num].split('_')[1]);
                         if (block == this.startBlock) {
-                            this.blockMap[block].texture = PIXI.Texture.fromImage('res/s' + img + '.png');
+                            this.blockMap[block].texture = this.textureList1['s' + img];
                         }
                         else {
-                            this.blockMap[block].texture = PIXI.Texture.fromImage('res/n' + img + '.png');
+                            this.blockMap[block].texture = this.textureList1['n' + img];
                         }
                         this.blockMap[block].rotation = Math.PI * 0.5 * rot;
                         this.blockMap[block].alpha = 1;
