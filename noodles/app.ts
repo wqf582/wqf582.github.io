@@ -148,7 +148,7 @@
             this.stepText.position.set(window.innerWidth - 10, 30);
             this.stepText.style.fontFamily = 'Arial';
             this.stepText.style.fontWeight = 'lighter';
-            this.stepText.style.fontSize = 36;
+            this.stepText.style.fontSize = 32;
             this.stepText.style.fill = '#ffffff';
             this.stageGame.addChild(this.stepText);
         }
@@ -284,7 +284,7 @@
                 {
                     this.starText.text = '★☆☆☆☆';
                 }
-                this.stepText.text = this.steps + ' steps';
+                this.stepText.text = this.steps.toString();
             }
         }
     }
@@ -514,60 +514,6 @@
         }
     }
 
-}
-
-class Test
-{
-    renderer: PIXI.WebGLRenderer | PIXI.CanvasRenderer;
-
-    start()
-    {
-        this.renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight, { backgroundColor: 0x333333 });
-        document.body.appendChild(this.renderer.view);
-
-        var stage = new PIXI.Container();
-
-        var basicText = new PIXI.Text('Basic text in pixi');
-        basicText.x = 30;
-        basicText.y = 90;
-
-        stage.addChild(basicText);
-
-        var style = {
-            fontFamily: 'Arial',
-            fontSize: 100,
-            fontStyle: 'italic',
-            fontWeight: 'bold',
-            fill: '#F7EDCA',
-            stroke: '#4a1850',
-            strokeThickness: 5,
-            dropShadow: true,
-            dropShadowColor: '#000000',
-            dropShadowAngle: Math.PI / 6,
-            dropShadowDistance: 6,
-            wordWrap: true,
-            wordWrapWidth: 440
-        };
-
-        var richText = new PIXI.Text('Rich text with a lot of options and across multiple lines');
-        richText.x = 30;
-        richText.y = 180;
-        richText.style.fontFamily = 'Arial';
-        richText.style.fontSize = 100;
-        richText.style.fontWeight = 'bold';
-        richText.style.fill = '#F7EDCA';
-
-        stage.addChild(richText);
-
-        var animate = () =>
-        {
-
-            requestAnimationFrame(animate);
-            
-            this.renderer.render(stage);
-        }
-        animate();
-    }
 }
 
 window.onload = () =>
