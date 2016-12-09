@@ -58,7 +58,7 @@ var Game = (function () {
             var text = PIXI.Sprite.fromImage('res/6_6.png');
             text.name = '6_6';
             text.anchor.set(0.5, 0.5);
-            text.position.set(window.innerWidth / 2, 230);
+            text.position.set(window.innerWidth / 2, 240);
             text.interactive = true;
             text.on('click', function (event) { _this.chooseLevel(event); });
             text.on('tap', function (event) { _this.chooseLevel(event); });
@@ -68,7 +68,7 @@ var Game = (function () {
             var text = PIXI.Sprite.fromImage('res/7_7.png');
             text.name = '7_7';
             text.anchor.set(0.5, 0.5);
-            text.position.set(window.innerWidth / 2, 380);
+            text.position.set(window.innerWidth / 2, 400);
             text.interactive = true;
             text.on('click', function (event) { _this.chooseLevel(event); });
             text.on('tap', function (event) { _this.chooseLevel(event); });
@@ -78,7 +78,7 @@ var Game = (function () {
             var text = PIXI.Sprite.fromImage('res/7_10.png');
             text.name = '7_10';
             text.anchor.set(0.5, 0.5);
-            text.position.set(window.innerWidth / 2, 530);
+            text.position.set(window.innerWidth / 2, 560);
             text.interactive = true;
             text.on('click', function (event) { _this.chooseLevel(event); });
             text.on('tap', function (event) { _this.chooseLevel(event); });
@@ -109,10 +109,10 @@ var Game = (function () {
             this.starText = new PIXI.Text('');
             this.starText.name = 'stars';
             this.starText.anchor.set(0.5, 0.5);
-            this.starText.position.set(window.innerWidth / 2, 30);
+            this.starText.position.set(window.innerWidth / 2, 40);
             this.starText.style.fontFamily = 'Arial';
             this.starText.style.fontWeight = 'lighter';
-            this.starText.style.fontSize = 40;
+            this.starText.style.fontSize = 50;
             this.starText.style.fill = '#ffffff';
             this.stageGame.addChild(this.starText);
         }
@@ -120,10 +120,10 @@ var Game = (function () {
             this.stepText = new PIXI.Text('');
             this.stepText.name = 'steps';
             this.stepText.anchor.set(1, 0.5);
-            this.stepText.position.set(window.innerWidth - 10, 30);
+            this.stepText.position.set(window.innerWidth - 10, 40);
             this.stepText.style.fontFamily = 'Arial';
             this.stepText.style.fontWeight = 'lighter';
-            this.stepText.style.fontSize = 32;
+            this.stepText.style.fontSize = 40;
             this.stepText.style.fill = '#ffffff';
             this.stageGame.addChild(this.stepText);
         }
@@ -220,7 +220,7 @@ var Game = (function () {
                 else {
                     this.starText.text = '★☆☆☆☆';
                 }
-                this.stepText.text = this.steps.toString();
+                this.stepText.text = this.steps.toString() + ' steps';
             }
         }
     };
