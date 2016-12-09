@@ -39,7 +39,6 @@ var Game = (function () {
         document.addEventListener('mousedown', function (event) { _this.onMouseDown(event); }, false);
         document.addEventListener('touchstart', function (event) { _this.onTouchStart(event); }, false);
         window.onkeydown = function (event) { _this.onKeyDown(event); };
-        alert(window.innerWidth + ' ' + window.innerHeight);
         this.render();
     };
     Game.prototype.showLevel = function () {
@@ -111,7 +110,9 @@ var Game = (function () {
             this.starText.name = 'stars';
             this.starText.anchor.set(0.5, 0.5);
             this.starText.position.set(window.innerWidth / 2, 30);
-            this.starText.style.font = 'lighter 40px Arial';
+            this.starText.style.fontFamily = 'Arial';
+            this.starText.style.fontWeight = 'lighter';
+            this.starText.style.fontSize = 40;
             this.starText.style.fill = '#ffffff';
             this.stageGame.addChild(this.starText);
         }
@@ -120,7 +121,9 @@ var Game = (function () {
             this.stepText.name = 'steps';
             this.stepText.anchor.set(1, 0.5);
             this.stepText.position.set(window.innerWidth - 10, 30);
-            this.stepText.style.font = 'light 36px 微软雅黑';
+            this.stepText.style.fontFamily = 'Arial';
+            this.stepText.style.fontWeight = 'lighter';
+            this.stepText.style.fontSize = 36;
             this.stepText.style.fill = '#ffffff';
             this.stageGame.addChild(this.stepText);
         }
@@ -217,12 +220,12 @@ var Game = (function () {
                 else {
                     this.starText.text = '★☆☆☆☆';
                 }
-                this.stepText.text = this.steps + '步';
+                this.stepText.text = this.steps + ' steps';
             }
         }
     };
     Game.prototype.onKeyDown = function (event) {
-        if (event.keyCode == 0x20) {
+        if (event.keyCode == 32) {
             this.switchStage = false;
         }
     };
@@ -385,6 +388,49 @@ var Game = (function () {
         }
     };
     return Game;
+}());
+var Test = (function () {
+    function Test() {
+    }
+    Test.prototype.start = function () {
+        var _this = this;
+        this.renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight, { backgroundColor: 0x333333 });
+        document.body.appendChild(this.renderer.view);
+        var stage = new PIXI.Container();
+        var basicText = new PIXI.Text('Basic text in pixi');
+        basicText.x = 30;
+        basicText.y = 90;
+        stage.addChild(basicText);
+        var style = {
+            fontFamily: 'Arial',
+            fontSize: 100,
+            fontStyle: 'italic',
+            fontWeight: 'bold',
+            fill: '#F7EDCA',
+            stroke: '#4a1850',
+            strokeThickness: 5,
+            dropShadow: true,
+            dropShadowColor: '#000000',
+            dropShadowAngle: Math.PI / 6,
+            dropShadowDistance: 6,
+            wordWrap: true,
+            wordWrapWidth: 440
+        };
+        var richText = new PIXI.Text('Rich text with a lot of options and across multiple lines');
+        richText.x = 30;
+        richText.y = 180;
+        richText.style.fontFamily = 'Arial';
+        richText.style.fontSize = 100;
+        richText.style.fontWeight = 'bold';
+        richText.style.fill = '#F7EDCA';
+        stage.addChild(richText);
+        var animate = function () {
+            requestAnimationFrame(animate);
+            _this.renderer.render(stage);
+        };
+        animate();
+    };
+    return Test;
 }());
 window.onload = function () {
     var game = new Game();
